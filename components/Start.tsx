@@ -1,12 +1,6 @@
 import GameForm from "./GameForm";
 
-export default function Start({
-  setStep,
-  setPlayer,
-  setRows,
-  player,
-  rows,
-}: any) {
+export default function Start({ handleSubmit }: any) {
   return (
     <>
       <h1>Velkommen til Master Mind</h1>
@@ -14,13 +8,7 @@ export default function Start({
         <li>Informasjon om spillet</li>
         <li>Mer informasjon...</li>
       </ul>
-      <GameForm
-        setStep={setStep}
-        setPlayer={setPlayer}
-        setRows={setRows}
-        player={player}
-        rows={rows}
-      />
+      <GameForm handleSubmit={handleSubmit} />
     </>
   );
 }

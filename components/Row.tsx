@@ -1,38 +1,41 @@
-import Cell from "./Cell";
+import ColorPicker from "./ColorPicker";
 
-const rowData = {
-  number: 1,
-  cells: [
-    {
-      cellName: "cell-1",
-      background: "red",
-    },
-    {
-      cellName: "cell-2",
-      background: "blue",
-    },
-    {
-      cellName: "cell-3",
-      background: "yellow",
-    },
-    {
-      cellName: "cell-4",
-      background: "green",
-    },
-  ],
-};
-
-export default function Row() {
+export default function Row({
+  row,
+  handleCellClick,
+  handleRowSubmit,
+  isCurrentRow,
+  handleSelectedColor,
+}: any) {
   return (
-    <div className="row-inner-wrapper">
-      <div className="row">
-        <p>{rowData.number}</p>
-        <div className="cells">
-          {rowData.cells.map((cell) => (
-            <Cell key={cell.cellName} background={cell.background} />
-          ))}
+    <>
+      <form onSubmit={handleRowSubmit}>
+        <div className="row-inner-wrapper">
+          <div className="row">
+            <p>{row.number}</p>
+            <div className="cells">
+              {row.cells.map((cell: any) => (
+                <div key={cell.cellname} className="cell">
+                  <button
+                    className="cellButton"
+                    type="button"
+                    onClick={handleCellClick}
+                    style={{
+                      backgroundColor: cell.background ?? "transparent",
+                    }}
+                  ></button>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+        <button>Send</button>
+      </form>
+      <ColorPicker
+        colors={[]}
+        selectedColor={null}
+        handleSelectedColor={handleSelectedColor}
+      />
+    </>
   );
 }
